@@ -7,6 +7,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = item => {
     setCartItems([...cartItems, item]);
+    return [...cartItems, item]; // Return updated cart for potential use
   };
 
   const removeFromCart = itemId => {
