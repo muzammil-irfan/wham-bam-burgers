@@ -37,10 +37,10 @@ app.get("/", (req,res)=>{
 
 const logRequest = (req, res, next) => {
   console.log(`Request: ${req.method} ${req.url}`);
-  console.log(`IP: ${req.ip}`);
-  console.log(`Params: ${JSON.stringify(req.params)}`);
-  console.log(`Query: ${JSON.stringify(req.query)}`);
-  console.log(`Body: ${JSON.stringify(req.body)}`);
+  // console.log(`IP: ${req.ip}`);
+  // console.log(`Params: ${JSON.stringify(req.params)}`);
+  // console.log(`Query: ${JSON.stringify(req.query)}`);
+  // console.log(`Body: ${JSON.stringify(req.body)}`);
   next();
 };
 
