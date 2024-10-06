@@ -39,4 +39,21 @@ router.patch('/:id', async (req, res) => {
   }
 });
 
+// Get aggregated reports
+router.get('/reports', async (req, res) => {
+  try {
+    const totalOrders = await Order.countDocuments();
+    const completedOrders = await Order.countDocuments({ status: 'Completed' });
+    const pendingOrders = await Order.countDocuments({ status: 'Pending' });
+
+    res.json({
+      totalOrders,
+      completedOrders,
+      pendingOrders,
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router;
