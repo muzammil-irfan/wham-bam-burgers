@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, Alert } from 'react-native';
 import axios from 'axios';
 import BACKEND_URL from '../utils/backendUrl';
+import CustomButton from '../components/CustomButton';
 
 const ManageMenuScreen = () => {
   const [newItem, setNewItem] = useState({ name: '', price: '' });
@@ -22,6 +23,7 @@ const ManageMenuScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Add Menu</Text>
       <TextInput
         placeholder="Item Name"
         value={newItem.name}
@@ -35,7 +37,7 @@ const ManageMenuScreen = () => {
         keyboardType="numeric"
         style={styles.input}
       />
-      <Button title="Add Item" onPress={addItem} />
+      <CustomButton title="Add Item" onPress={addItem} />
     </View>
   );
 };
@@ -44,6 +46,11 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     backgroundColor: '#f8f8f8',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
   },
   input: {
     height: 40,

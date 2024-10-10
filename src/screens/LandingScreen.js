@@ -6,12 +6,12 @@ const LandingScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Wham Bam Burgers</Text>
       <Button
-        title="Customer"
-        onPress={() => navigation.navigate('Customer')}
+        title="Enter as Customer"
+        onPress={() => navigation.navigate('Customer')} // Navigate to the Customer tabs
       />
       <Button
-        title="Staff"
-        onPress={() => navigation.navigate('Staff')}
+        title="Enter as Staff"
+        onPress={() => navigation.navigate('Staff')} // Navigate to the Staff tabs
       />
     </View>
   );

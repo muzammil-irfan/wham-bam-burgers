@@ -1,3 +1,3 @@
-const BACKEND_URL = "https://1878-116-90-96-66.ngrok-free.app/api"
+const BACKEND_URL = "https://e5e8-103-82-123-15.ngrok-free.app/api"
 
 export default BACKEND_URL;

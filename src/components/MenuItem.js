@@ -11,16 +11,16 @@ const MenuItem = ({ item }) => {
   const handleAddToCart = () => {
     const cartItem = { ...item, quantity };
     addToCart(cartItem);
+    setQuantity(1); // Reset quantity after adding to cart
     navigation.navigate('Cart');
   };
 
   return (
     <View style={styles.menuItemContainer}>
-      {item.image && (
-        <Image
-          source={{ uri: `${item.image}` }}
-          style={styles.menuItemImage}
-        />
+      {item.image ? (
+        <Image source={{ uri: `${item.image}` }} style={styles.menuItemImage} />
+      ) : (
+        <View style={styles.placeholderImage} /> // Placeholder if no image
       )}
       <View style={styles.itemDetails}>
         <View style={styles.titlePriceContainer}>
@@ -30,7 +30,10 @@ const MenuItem = ({ item }) => {
         <Text style={styles.menuItemDescription}>{item.description}</Text>
         <View style={styles.cartButtonContainer}>
           <View style={styles.quantityContainer}>
-            <TouchableOpacity onPress={() => setQuantity(Math.max(1, quantity - 1))}>
+            <TouchableOpacity 
+              onPress={() => setQuantity(Math.max(1, quantity - 1))}
+              disabled={quantity <= 1} // Disable if quantity is 1
+            >
               <Text style={styles.quantityButton}>-</Text>
             </TouchableOpacity>
             <Text style={styles.quantityText}>{quantity}</Text>
@@ -49,7 +52,7 @@ const MenuItem = ({ item }) => {
 
 const styles = StyleSheet.create({
   menuItemContainer: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     padding: 15,
     backgroundColor: '#fff',
     borderRadius: 8,
@@ -61,10 +64,18 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   menuItemImage: {
-    width: 180,
-    height: 150,
+    // width: 330,
+    height: 210,
     borderRadius: 8,
-    marginRight: 15,
+    // marginRight: 15,
+    // marginBottom: 15,
+  },
+  placeholderImage: {
+    // width: 330,
+    height: 210,
+    borderRadius: 8,
+    // marginRight: 15,
+    backgroundColor: '#e0e0e0', // Light gray for placeholder
   },
   itemDetails: {
     flex: 1,
@@ -74,6 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 10,
+    marginTop: 10,
   },
   menuItemName: {
     fontSize: 20,
@@ -94,7 +106,6 @@ const styles = StyleSheet.create({
   quantityContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 0
   },
   quantityButton: {
     fontSize: 20,
@@ -114,8 +125,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     alignItems: 'center',
-    // marginLeft: 10, // Add some space between quantity and button
-    width: "50%"
+    width: "50%",
   },
   addButtonText: {
     color: '#fff',
@@ -125,7 +135,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 10, // Add margin for spacing
+    marginTop: 10,
   },
 });
 
